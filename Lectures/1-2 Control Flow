@@ -1,0 +1,6 @@
+ADDI: Addition with an immediate
+    - addi rd, rs1, imm # rd = rs1 + imm
+    - ADDI has three operands
+        - rd and rs1 are registers
+        - immediate is const num
+

@@ -1,0 +1,51 @@
+Functions
+
+Flow with Functions 
+    - Processor needs to know the return address to resume flow
+        - A branch won't work!
+    - Processor should resume from the instruction that follows the function call
+        - We need to keep info at function call
+
+Procedure Call Instructions - JAL
+    - jal   rd, function_name   # function name is just label - indicating memory address
+    - jump and link (JAL) for procedure call
+        - go to the label (where procedure/function starts)
+        - save the address of following instruction (PC + 4) in rd
+
+    - rd can be any register
+        -save return addres in ra or x1 for function calls
+        0 use x0 as rd if the return adddress is not needed
+
+How do we return?
+    - We need another instruction to jump to an address in registers
+
+        jalr    rd, rd1, offset
+
+        - proecdure call or return: jump and link to address in register
+        - go to address computed as Reg[rs1] + offset
+        - save address of following instruction (PC + 4) in rd
+            - retunr address stored in rd
+            - if not needed - use x0
+    
+    can communicate between caller and callee using a0 - a7 registers
+
+Stack
+    - stack grows from higher toward lower address
+        - sp is the address of the word at top of stack
+    -Two operations
+        - push adds data to top of stack
+        - pop removes data from top of stack
+    - stack can be used for
+        - saving registers
+        - keeping local variables (used by function)
+        - passing arguments
+        - returning values
+    
+Stack Operations
+    - # push x1
+        addi    sp, sp, -4
+        sw      x1, 0(sp)
+
+      # pop x2
+        lw      x2, 0(sp)
+        addi    sp, sp, 4

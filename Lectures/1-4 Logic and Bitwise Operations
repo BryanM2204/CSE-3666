@@ -1,0 +1,35 @@
+Branches with unsigned comparison 
+    - bltu rs1, rs2, L  # if (rs1 < rs2) goto L
+    - bgeu rs1, rs2, L  # if (rs1 >= rs2) goto L
+
+Shift Bit
+    - Given v, 
+        - shift left by one bit = value becomes 2v
+        - shift by right one bit = value becomes v/2
+    - Operators
+        - Shift right logical (unsigned)
+
+LUI
+    - LUI rd, immd
+    - LUI allows 20 bit immediate
+    - The 20 bits immediate are placed into bits 12 to bits 31
+        - lower 12 bits are cleared (0 to 11)
+        - Zeroed
+    example:
+        Load 0x12345678 into register s0
+        The first part, 0x12345 (20 bits) first loaded to s0, then the rest 0x678 is loaded using normal addi as 0x678 is 12 bits
+        while 0x12345 is 20 bits
+        
+        lui s0, 012345
+        addi s0, s0, 0x678
+
+    
+        Load 0x789ABCDE into register s0
+        lui s0, 0x789AB
+        addi s0, s0, 0xFFFFFCDE  # sign extended
+
+        We cannot use 0xCDE in addi
+        “0xCDE”: Unsgined value is too large to fit into a sign-extended immediate
+
+
+    

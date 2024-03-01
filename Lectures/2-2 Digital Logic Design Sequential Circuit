@@ -1,0 +1,44 @@
+Bistable Element
+    - has 2 states - Q is 0 or 1
+    - The simplest sequential circuits to remeber something need memory to remember history
+
+D flip-flop, positive edge triggered
+   - D flip flop stores input D at the trigger, the rising edge of C
+   - to store a bit in D flip-flop: set up D, and then make C transit from 0 to 1
+   - The saved bit does not change until antoher value is stored
+
+Register with Write Control   
+   - The register is updated with D on clock edge only when write control input is 1
+      - otherwise - keep original value in register
+      - WRite also called Enable
+
+State Machine
+   - A kind of sequential circuit updates registers synchronously withthe same clock
+   - Bits in a registers indicate states 
+      - state is a summary of previous inputs
+
+   - The state is stable within a cycle
+   - The state machine does two things
+      -Generate the output
+      - decide the new state for the next cycle
+
+What is Happening in a cycle
+   - Between clock edges:
+      - New state is stored in state elements
+      - Combination logic computes
+      - state for next cycle is presented at the input of the state elements
+   - clock cycle must be long enough to complete the work 
+
+Clock Rate
+   - sum of delays 
+      - sum of tprop and tcombinational
+
+Memory 
+   - Read
+      - set address and MemRead to 1 and wait
+      - Get the data from Read data
+   - Write 
+      - Set address, Write data, and MemWrite to 1 and wait
+
+   - MemWrite and MemRead should not be 1 at the same time
+

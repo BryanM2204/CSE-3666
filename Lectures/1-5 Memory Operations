@@ -1,0 +1,60 @@
+ Load/store word instructions
+    - # load a word from mem into rd
+      # Reg[rd] = Mem[Reg[rs1] + offset]
+
+      lw    rd, offset(rs1)
+
+      # save a word to mem
+      # Mem[Reg[rs1] + offset] = Reg[rs2]
+      sw    rs2, offset(rs1)
+
+    - Offset is also called displacement
+        - It is an immediate in range [-2048, 2047], not a register
+    - The effective adddress sent to memory module is 
+        effective address = Reg[rs1] + offset
+
+    Example: copy a word from an address to another
+    lw  t0, 0(s1)
+    sw  t0, 0(s2)  # assume s1 != s2
+
+    Common mistakes:
+
+        lw  x1, x2(x3)  // the offset must be an immediate
+        lw  x1, 20000(x3)   // the offset is too large
+
+        lw  x1, (x3)    // missing offset. Write 0(x3)
+
+    Smallest unit of Mem is byte and smallest unit of array is a word 
+
+
+Edianness
+    - big-endian: the highest byte goes to the lowest memory address
+    - little-endian: the lowest byte goes to the lowest memory address
+
+
+Data of other sizes
+    - # load signed (signe xtended) byte/halfword
+    lb/lh
+    when you store using sb sh or sw, the lowest bytes are stored in memory
+    
+
+Load Bytes: LB vs LBU
+    - LB or LBU instructions load a bute from memory to a register
+        - LB: the byte is sign extended to a word
+        - LBU: the byte is zero extended to a word
+
+    lb  t0, 0(s1)
+    lbu t1, 0(s1)
+
+
+SB 
+    - SB instruction stores the lowest byte in a register ot memmory 
+    sb  t3, 0(s1)
+
+    only the lowest byte 0x80 is written to memory
+    
+
+Pitfalls
+    - A word has four bytes
+        - LW loads four bytes- sequential word addresses are incrememnted by 4
+    - Sequential half words/bytes are NOT incrememnted by 4

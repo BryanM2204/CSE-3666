@@ -1,0 +1,39 @@
+Encoding of LUI: U-type 
+    imm[31:12] | rd | opcode
+
+    - 20 bits for immediate 
+    - 5 bits for rd : destination register number
+    - 7 bits for opcode: operation code. 0b011_0111 for LUI
+
+    - when checking instruction - always check opcode first
+
+Address Alignment
+    - Words and half words have alignment issues
+        - when aligned:
+            addresses of words must be a multiple of 4
+            addresses of half-word must be a multiple of 2
+
+
+The range of 12 -bit Addr offset is [-2048, 2047]
+
+branch offset = target address - PC
+    - branch offset is multiple of 4
+    - all instructions are 4 bytes in RISC-V and must be aligned 
+
+
+SB-type Instruction
+    - opcode
+    - rs1
+    - rs2
+    - immediate fields: funct7 and rd
+        - store 12 bits from offset
+        - similar to S-type, but placement of bits is different
+        - imm[0] will always be 0 
+
+
+JAL: UJ-type
+JAL     rd, Label
+    - JAL is based on U-type format, which has 20 bits for immediate
+        - imm[20:1] are kept in machien code / imm[0] is always 0
+        - Can jum tp any even address in [PC - 2^20, PC + 2^20 -2]
+        

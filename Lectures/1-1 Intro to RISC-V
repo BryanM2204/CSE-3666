@@ -1,0 +1,22 @@
+Computer Abstractions and Technology - Intro to RISC-V
+
+Register File
+    - Faster but holds less
+    - The register file in RISC-V has 32 registers
+        - Registers are numebred from 0 to 31 (x0, x1,....)
+        - Each register has 32 bits = a 32 bit data item is called a "word"
+    - We use registers to keep frequently accessed data - registers are fast
+
+    - 1 byte = 8 bits
+
+Arithmetic Operations: Add and Subtract
+    - add  x3, x1, x2  #x3 = x1 + x2
+    - sub  x3, x1, x2  #x3 = x1 - x2
+           rd  rs1 rs2
+
+    - Many operations have the form above
+        - Three operands and all are registers
+        - The left most register is the destination register rd where result is saved
+        - Two source registers are reffered as rs1 and rs2
+
+    addi rd, rs1, imm # rd = rs1 + imm

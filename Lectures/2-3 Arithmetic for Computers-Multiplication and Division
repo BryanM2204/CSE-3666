@@ -1,0 +1,25 @@
+Multiplication instructions
+    - # lower 32 bits of the product
+        mul     rd, rs1, rs2
+
+        mul only stores lower 32 bits - register only has 32 bits of space
+
+    - # higher 32 bits depend on signs of rs1 and rs2
+        mulh    rd, rs1, rs2    # both are signed
+        mulhu   rd, rs1, rs2    # both are unsigned
+        mulhsu  rd, rs1, rs2    # rs1 is signed, rs2 is unsigned
+
+
+Division Instructions
+    - # signed
+        div     rd, rs1, rds2   # rs1 / rs2
+        rem     rd, rs1, rs2    # rs1 % rs2
+
+    - # unsigned
+        divu    rd, rs1, rs2    
+        remu    rd, rs1, rs2
+
+
+    - no divide by 0 checking 
+
+  

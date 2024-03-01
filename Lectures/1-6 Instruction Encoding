@@ -1,0 +1,53 @@
+RISC-V Instruction Encoding
+
+Representing Industrictions with Bits
+    - 32 bits are used to encode instructions
+
+
+RISV-V instruction words
+    - Program Counter (PC) points to current instruction
+        - incrememted by 4 in normal flow for sequential execution
+
+
+RISC-V R-type Instructions
+    - for instructions that have 3 registers as operands
+
+    funct7 | rs2 | rs1 | funct3 | rd | opcode
+
+    - fields in type R-type
+        - opcode: 7-bit operation code
+        - rd: destination register number
+        - rs1: first source register number
+        - rs2: second source register number
+        - funct3: additional function code
+        - funct7: even more function code
+
+
+I-type Instructions
+    - same like R-type, except that funct7 and rs2 merge
+    - fields in i-type
+        - opcode - 7 bits
+        - rd - 5 bits
+        -rs1 - 5 bits
+        -funct3 - 3 bits
+        -imm [11:0] 12 bits
+
+    Loads i-type
+        - lw    x1, 32(x2)
+                rd, imm(rs1)
+
+
+Stores S-type
+    imm[11:5] | rs2 | rs1 | funct3 | imm[4:0] | opcode
+    
+    sw  rs2, offset(rs1)  # imm is offset
+
+    -fields in S-type
+        - opcode
+        - rs1: first source register number
+        - rs2: second source register number
+        - imm[11:5] and imm[4:0]:
+            The lower 12 bits of immediate are stored into two fields
+            Bits 11 to 5 are in funct7 and bits 4 to 0 are in rd
+
+    
